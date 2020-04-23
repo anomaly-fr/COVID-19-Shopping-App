@@ -172,6 +172,7 @@ public class LoginActivity extends AppCompatActivity {
                                 });
                     } catch (Exception e) {
                         dialog.dismiss();
+                        Toast.makeText(LoginActivity.this, "Verification Failed. Invalid OTP.", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     Snackbar.make(view, "Please enter an OTP.", Snackbar.LENGTH_LONG).setAction("Action", null).show();
