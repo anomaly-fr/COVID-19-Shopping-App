@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "85857331592",
+    "firebase_url": "https://local-grocer.firebaseio.com",
+    "project_id": "local-grocer",
+    "storage_bucket": "local-grocer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:85857331592:android:6b203f13550bae353db23d",
+        "android_client_info": {
+          "package_name": "com.example.localgrocer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "85857331592-qolson4d46s8b1e6q3sec5g118oo4d24.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.localgrocer",
+            "certificate_hash": "4c20778da05ee90250009e7e621b3faffb6b3c28"
+          }
+        },
+        {
+          "client_id": "85857331592-pe0jacvr0fa20ol4evujnobojn942rse.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSNlYv5IaJ29yU1vSUPqLcrWqbwJHDJTk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "85857331592-pe0jacvr0fa20ol4evujnobojn942rse.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
