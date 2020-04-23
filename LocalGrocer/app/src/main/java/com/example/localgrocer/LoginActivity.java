@@ -147,27 +147,35 @@ public class LoginActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final ProgressDialog dialog = new ProgressDialog(activity);
-                dialog.setMessage("Verifying Phone Number");
-                dialog.setCancelable(false);
-                dialog.show();
-                final PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, otp.getText().toString().trim());
-                mAuth.signInWithCredential(credential)
-                        .addOnCompleteListener(activity, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    dialog.dismiss();
-                                    Toast.makeText(LoginActivity.this, "Phone Number Verified", Toast.LENGTH_SHORT).show();
-                                    signInWithPhoneAuthCredential(credential);
-                                } else {
-                                    if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-                                        dialog.dismiss();
-                                        Toast.makeText(LoginActivity.this, "Verification Failed. Invalid OTP.", Toast.LENGTH_SHORT).show();
+                if(!otp.getText().toString().equals("")) {
+                    final ProgressDialog dialog = new ProgressDialog(activity);
+                    dialog.setMessage("Verifying Phone Number");
+                    dialog.setCancelable(false);
+                    dialog.show();
+                    try {
+                        final PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, otp.getText().toString().trim());
+                        mAuth.signInWithCredential(credential)
+                                .addOnCompleteListener(activity, new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        if (task.isSuccessful()) {
+                                            dialog.dismiss();
+                                            Toast.makeText(LoginActivity.this, "Phone Number Verified", Toast.LENGTH_SHORT).show();
+                                            signInWithPhoneAuthCredential(credential);
+                                        } else {
+                                            if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
+                                                dialog.dismiss();
+                                                Toast.makeText(LoginActivity.this, "Verification Failed. Invalid OTP.", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
                                     }
-                                }
-                            }
-                        });
+                                });
+                    } catch (Exception e) {
+                        dialog.dismiss();
+                    }
+                } else {
+                    Snackbar.make(view, "Please enter an OTP.", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                }
             }
         });
     }
