@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".walkthrough.WalkthroughActivity">
+
+    <androidx.viewpager.widget.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/xVPWalkThrough"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="@dimen/dimen_8">
+
+        <com.viewpagerindicator.CirclePageIndicator
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimen_45"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/xIndicator"
+            android:padding="@dimen/dimen_5"
+            app:fillColor="@color/colorPrimary"
+            app:radius="@dimen/dimen_5"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/xWalkthroughButton"
+            android:layout_below="@id/xIndicator"
+            android:textColor="@color/app_white"
+            android:background="@drawable/background_btn_green"
+            android:text="@string/walkthrough_button_title"
+            android:textSize="@dimen/dimen_15"/>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

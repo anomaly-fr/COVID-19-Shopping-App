@@ -22,4 +22,11 @@
     <string name="menu_slideshow">Slideshow</string>
 
     <string name="home_second">Home Second</string>
+    <string name="walkthrough_button_title">GET STARTED</string>
+    <string name="walkthrough_text_title1">Loreum Epsum Title1</string>
+    <string name="walkthrough_text_title2">Loreum Epsumyu Title2</string>
+    <string name="walkthrough_text_title3">Loreu Epsum Title3</string>
+    <string name="walkthrough_text_body1">Loreum epsum just a dummy text1</string>
+    <string name="walkthrough_text_body2">Loreum epsum just a dummy text2</string>
+    <string name="walkthrough_text_body3">Loreum epsum just a dummy text3</string>
 </resources>

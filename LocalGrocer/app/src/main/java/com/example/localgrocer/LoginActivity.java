@@ -223,6 +223,8 @@ public class LoginActivity extends AppCompatActivity {
                         intent.putExtra("Phone Number", phone_number.getText().toString().trim());
                         startActivity(intent);
                         activity.finish();
+
+
                     }
 
 

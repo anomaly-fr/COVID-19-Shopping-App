@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/app_white"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Loreum Epsum Title"
+        android:textColor="@color/app_black_87"
+        android:textSize="@dimen/dimen_20"
+        android:id="@+id/xTVWalkthroughTitle"
+        android:layout_marginTop="@dimen/dimen_19"
+        android:gravity="center_horizontal"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Loreum Epsum just a dummy text"
+        android:textColor="@color/app_black_26"
+        android:textSize="@dimen/dimen_17"
+        android:layout_below="@id/xTVWalkthroughTitle"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/xTVWalkthroughBody"
+        android:layout_marginTop="@dimen/dimen_16"
+        android:gravity="center_horizontal"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_grocery_image"
+        android:layout_centerInParent="true"
+        android:id="@+id/xIVWalthroughImage"
+        android:layout_gravity="center_horizontal"/>
+
+
+</RelativeLayout>

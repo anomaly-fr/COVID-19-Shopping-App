@@ -3,4 +3,13 @@
     <dimen name="General_Layout_Padding">20dp</dimen>
     <dimen name="General_Text_Padding">5dp</dimen>
     <dimen name="General_Drawable_Padding">5dp</dimen>
+    <dimen name="dimen_8">8dp</dimen>
+    <dimen name="dimen_45">45dp</dimen>
+    <dimen name="dimen_15">15sp</dimen>
+    <dimen name="dimen_5">5dp</dimen>
+    <dimen name="dimen_10">10dp</dimen>
+    <dimen name="dimen_16">16dp</dimen>
+    <dimen name="dimen_17">17dp</dimen>
+    <dimen name="dimen_19">19dp</dimen>
+    <dimen name="dimen_20">20dp</dimen>
 </resources>
