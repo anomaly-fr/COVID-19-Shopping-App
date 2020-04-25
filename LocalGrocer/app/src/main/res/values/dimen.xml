@@ -3,6 +3,7 @@
     <dimen name="General_Layout_Padding">20dp</dimen>
     <dimen name="General_Text_Padding">5dp</dimen>
     <dimen name="General_Drawable_Padding">5dp</dimen>
+    <dimen name="General_Text_Size">20dp</dimen>
     <dimen name="dimen_8">8dp</dimen>
     <dimen name="dimen_45">45dp</dimen>
     <dimen name="dimen_15">15sp</dimen>

@@ -1,10 +1,17 @@
 package com.example.localgrocer;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.localgrocer.ui.Consumer.ConsumerFragment;
@@ -29,6 +36,7 @@ public class ConsumerActivity extends AppCompatActivity  {
     private AppBarConfiguration mAppBarConfiguration;
     private  DrawerLayout drawer;
     private Activity activity;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +45,7 @@ public class ConsumerActivity extends AppCompatActivity  {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         activity = this;
+        context = this;
         //FloatingActionButton fab = findViewById(R.id.fab);
         /*fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +54,30 @@ public class ConsumerActivity extends AppCompatActivity  {
                         .setAction("Action", null).show();
             }
         });*/
+
+        //Contact Us AlertDialog
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        final View customLayout = getLayoutInflater().inflate(R.layout.contact_us_alertdialog_layout, null);
+        builder.setView(customLayout);
+        builder.setCancelable(true);
+        Button contact_team = customLayout.findViewById(R.id.contact_us_send_email);
+        final EditText message_body = customLayout.findViewById(R.id.contact_us_message_body);
+        contact_team.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendEmail(message_body.getText().toString().trim());
+            }
+        });
+        final AlertDialog dialog = builder.create();
+        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialogInterface) {
+                dialog.dismiss();
+                message_body.setText("");
+            }
+        });
+
+
         drawer = findViewById(R.id.drawer_layout);
         final NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.bringToFront();
@@ -84,6 +117,8 @@ public class ConsumerActivity extends AppCompatActivity  {
                         break;
                     case R.id.nav_contact:
                         menuItem.setChecked(false);
+                        dialog.show();
+                        //sendEmail();
                         break;
                     case R.id.nav_log_out:
                         menuItem.setChecked(false);
@@ -131,4 +166,21 @@ public class ConsumerActivity extends AppCompatActivity  {
         }
         return true;
     }*/
+
+   public void sendEmail(String body){
+       String[] to = {"pcshopapp@gmail.com"};
+       Intent emailIntent = new Intent(Intent.ACTION_SEND);
+       emailIntent.setData(Uri.parse("mailto:"));
+       //emailIntent.setType("text/plain");
+       emailIntent.putExtra(Intent.EXTRA_EMAIL, to);
+       emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Local Grocer Query - " + "Phone Number");
+       emailIntent.putExtra(Intent.EXTRA_TEXT, "Dear Local Grocer Team,\n\n" + body + "\n\nThanks and Regards,\n" + "Name");
+       emailIntent.setType("message/rfc822");
+       try {
+           startActivity(Intent.createChooser(emailIntent, "Contact the Local Grocer Team"));
+           //finish();
+       } catch (android.content.ActivityNotFoundException ex) {
+           Toast.makeText(activity, "There is no email client installed.", Toast.LENGTH_SHORT).show();
+       }
+   }
 }

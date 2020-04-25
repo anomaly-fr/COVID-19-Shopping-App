@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimaryDark"
+    android:padding="@dimen/General_Layout_Padding">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="5dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/General_Layout_Padding">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/contact_us_alert_dialog"
+        android:textColor="@color/TextColorDark"
+        android:id="@+id/contact_us_alert_dialog_textview"
+        android:textSize="@dimen/General_Text_Size"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/contact_us_alert_dialog_textview"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/TextColorDark"
+        android:hint="Enter Message Content"
+        android:id="@+id/contact_us_message_body"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/General_Text_Padding"
+                android:background="@color/colorPrimary"
+                android:text="Send Message"
+                android:textColor="@color/TextColorLight"
+                android:textAllCaps="false"
+                android:layout_below="@id/contact_us_message_body"
+                android:layout_marginTop="10dp"
+                android:id="@+id/contact_us_send_email"/>
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
