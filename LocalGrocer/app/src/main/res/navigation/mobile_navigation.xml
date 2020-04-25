@@ -3,41 +3,40 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@id/nav_consumer_fragment">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.example.localgrocer.ui.home.HomeFragment"
+        android:id="@+id/nav_consumer_fragment"
+        android:name="com.example.localgrocer.ui.Consumer.ConsumerFragment"
         android:label="@string/menu_consumer"
-        tools:layout="@layout/fragment_home">
+        tools:layout="@layout/fragment_consumer">
 
-        <action
-            android:id="@+id/action_HomeFragment_to_HomeSecondFragment"
-            app:destination="@id/nav_home_second" />
-    </fragment>
-    <fragment
-        android:id="@+id/nav_home_second"
-        android:name="com.example.localgrocer.ui.home.HomeSecondFragment"
-        android:label="@string/home_second"
-        tools:layout="@layout/fragment_home_second">
-        <action
-            android:id="@+id/action_HomeSecondFragment_to_HomeFragment"
-            app:destination="@id/nav_home" />
 
-        <argument
-            android:name="myArg"
-            app:argType="string" />
     </fragment>
 
+
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.localgrocer.ui.gallery.GalleryFragment"
+        android:id="@+id/nav_requestshop_fragment"
+        android:name="com.example.localgrocer.ui.RequestShop.RequestShopFragment"
         android:label="@string/menu_shopkeeper_request"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_request_shop" >
+
+
+
+    </fragment>
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.localgrocer.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_contact_us"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_my_profile_fragment"
+        android:name="com.example.localgrocer.ui.MyProfile.MyProfileFragment"
+        android:label="@string/menu_my_profile"
+        tools:layout="@layout/fragment_myprofile" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_manage_shop_fragment"
+        android:name="com.example.localgrocer.ui.ManageShop.ManageShopFragment"
+        android:label="@string/menu_manage_shop"
+        tools:layout="@layout/fragment_manageshop" >
+    </fragment>
+
 </navigation>
