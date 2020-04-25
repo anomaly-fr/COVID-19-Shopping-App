@@ -8,6 +8,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.wifi.hotspot2.pps.Credential;
 import android.os.Bundle;
 import android.util.Log;
@@ -48,6 +49,8 @@ public class LoginActivity extends AppCompatActivity {
     private String mVerificationId;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference userRef = database.getReference("Users");
+    private SharedPreferences sharedPreferences;
+    private static String SHARED_PREFERENCE_NAME = "Local Grocer Shared Preference";
 
 
     @Override
@@ -56,6 +59,16 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         activity = this;
         mAuth = FirebaseAuth.getInstance();
+
+        //SharedPreference Initialization
+        sharedPreferences = getSharedPreferences(SHARED_PREFERENCE_NAME, MODE_PRIVATE);
+
+        if(sharedPreferences.getBoolean("is_signed_in", false)) {
+            Intent intent = new Intent(activity, ConsumerActivity.class);
+            //intent.putExtra("Phone Number", phone_number.getText().toString().trim());
+            startActivity(intent);
+            activity.finish();
+        }
         //Animation Duration
         shortAnimationDuration = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
@@ -214,6 +227,13 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if(dataSnapshot.hasChild(phone_number.getText().toString().trim())) {
+                        SharedPreferences.Editor myEditor = sharedPreferences.edit();
+                        myEditor.putString("Name", dataSnapshot.child(phone_number.getText().toString().trim()).child("Name").getValue().toString());
+                        myEditor.putString("Phone Number", phone_number.getText().toString().trim());
+                        myEditor.putString("Email", dataSnapshot.child(phone_number.getText().toString().trim()).child("Email").getValue().toString());
+                        myEditor.putString("Photo", dataSnapshot.child(phone_number.getText().toString().trim()).child("Profile Picture").getValue().toString());
+                        myEditor.putBoolean("is_signed_in", true);
+                        myEditor.commit();
                         Intent intent = new Intent(activity, ConsumerActivity.class);
                         intent.putExtra("Phone Number", phone_number.getText().toString().trim());
                         startActivity(intent);

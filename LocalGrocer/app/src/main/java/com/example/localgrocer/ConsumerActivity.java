@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.Menu;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.localgrocer.ui.Consumer.ConsumerFragment;
@@ -31,12 +33,18 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class ConsumerActivity extends AppCompatActivity  {
 
     private AppBarConfiguration mAppBarConfiguration;
     private  DrawerLayout drawer;
     private Activity activity;
     private Context context;
+    private SharedPreferences sharedPreferences;
+    private static String SHARED_PREFERENCE_NAME = "Local Grocer Shared Preference";
+    private TextView profile_name, profile_phone_number, profile_email;
+    private CircleImageView profile_picture;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +62,12 @@ public class ConsumerActivity extends AppCompatActivity  {
                         .setAction("Action", null).show();
             }
         });*/
+
+        //SharedPreference Initialization
+        sharedPreferences = getSharedPreferences(SHARED_PREFERENCE_NAME, MODE_PRIVATE);
+        SharedPreferences.Editor myEditor = sharedPreferences.edit();
+        myEditor.putBoolean("is_first_time", false);
+        myEditor.commit();
 
         //Contact Us AlertDialog
         final AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -77,8 +91,9 @@ public class ConsumerActivity extends AppCompatActivity  {
             }
         });
 
-
+        //Navigation Drawer
         drawer = findViewById(R.id.drawer_layout);
+
         final NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.bringToFront();
         // Passing each menu ID as a set of Ids because each
@@ -121,6 +136,12 @@ public class ConsumerActivity extends AppCompatActivity  {
                         //sendEmail();
                         break;
                     case R.id.nav_log_out:
+                        SharedPreferences.Editor myEditor = sharedPreferences.edit();
+                        myEditor.putBoolean("is_signed_in", false);
+                        myEditor.commit();
+                        Intent logout = new Intent(activity, LoginActivity.class);
+                        startActivity(logout);
+                        activity.finish();
                         menuItem.setChecked(false);
                         break;
                 }
@@ -131,6 +152,20 @@ public class ConsumerActivity extends AppCompatActivity  {
             }
         });
 
+        View headerLayout = navigationView.getHeaderView(0);
+        //Profile Details Initialization
+        profile_email = headerLayout.findViewById(R.id.nav_header_email);
+        profile_name = headerLayout.findViewById(R.id.nav_header_name);
+        profile_phone_number = headerLayout.findViewById(R.id.nav_header_phone_number);
+        profile_picture = headerLayout.findViewById(R.id.nav_header_profile_pic);
+
+        //Set Profile Details
+        profile_email.setText(sharedPreferences.getString("Email", "Email"));
+        profile_name.setText(sharedPreferences.getString("Name", "Name"));
+        profile_phone_number.setText(sharedPreferences.getString("Phone Number", "Phone Number"));
+        downloadprofileimage(sharedPreferences.getString("Photo", "-1"));
+
+        //Show the options based on whether the shop owner is a user or not
         //navigationView.getMenu().findItem(R.id.nav_requestshop).setVisible(false);
 
     }
@@ -167,14 +202,14 @@ public class ConsumerActivity extends AppCompatActivity  {
         return true;
     }*/
 
-   public void sendEmail(String body){
+   private void sendEmail(String body){
        String[] to = {"pcshopapp@gmail.com"};
        Intent emailIntent = new Intent(Intent.ACTION_SEND);
        emailIntent.setData(Uri.parse("mailto:"));
        //emailIntent.setType("text/plain");
        emailIntent.putExtra(Intent.EXTRA_EMAIL, to);
-       emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Local Grocer Query - " + "Phone Number");
-       emailIntent.putExtra(Intent.EXTRA_TEXT, "Dear Local Grocer Team,\n\n" + body + "\n\nThanks and Regards,\n" + "Name");
+       emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Local Grocer Query - " + sharedPreferences.getString("Phone Number", "Phone Number"));
+       emailIntent.putExtra(Intent.EXTRA_TEXT, "Dear Local Grocer Team,\n\n" + body + "\n\nThanks and Regards,\n" + sharedPreferences.getString("Name", "Name"));
        emailIntent.setType("message/rfc822");
        try {
            startActivity(Intent.createChooser(emailIntent, "Contact the Local Grocer Team"));
@@ -182,5 +217,9 @@ public class ConsumerActivity extends AppCompatActivity  {
        } catch (android.content.ActivityNotFoundException ex) {
            Toast.makeText(activity, "There is no email client installed.", Toast.LENGTH_SHORT).show();
        }
+   }
+
+   private void downloadprofileimage(String imagepath) {
+       //profile_picture = ...
    }
 }

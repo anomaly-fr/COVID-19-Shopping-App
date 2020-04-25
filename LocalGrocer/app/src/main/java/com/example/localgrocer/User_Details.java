@@ -6,6 +6,7 @@ import androidx.cardview.widget.CardView;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -48,12 +49,18 @@ public class User_Details extends AppCompatActivity {
     private DatabaseReference userRef = database.getReference("Users");
 
     private FirebaseAnalytics mFirebaseAnalytics;
+    private SharedPreferences sharedPreferences;
+    private static String SHARED_PREFERENCE_NAME = "Local Grocer Shared Preference";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user__details);
         activity = this;
+
+        //SharedPreference Initialization
+        sharedPreferences = getSharedPreferences(SHARED_PREFERENCE_NAME, MODE_PRIVATE);
+
 
         //Analytics Initialization
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
@@ -108,6 +115,17 @@ public class User_Details extends AppCompatActivity {
                             userRef.child(phone_number.getText().toString().trim()).child("Profile Picture").setValue(image_path);
                         }
                         progressDialog.dismiss();
+                        SharedPreferences.Editor myEditor = sharedPreferences.edit();
+                        myEditor.putBoolean("is_signed_in", true);
+                        myEditor.putString("Name", name.getText().toString().trim());
+                        myEditor.putString("Email", email_id.getText().toString().trim());
+                        myEditor.putString("Phone Number", phone_number.getText().toString().trim());
+                        if (image_path.equals("")) {
+                            myEditor.putString("Photo", "-1");
+                        } else {
+                            myEditor.putString("Photo", image_path);
+                        }
+                        myEditor.commit();
                         Intent intent = new Intent(activity, ConsumerActivity.class);
                         startActivity(intent);
                         activity.finish();
