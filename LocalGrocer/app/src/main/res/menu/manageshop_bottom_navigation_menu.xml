@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/manageshop_item_list"
+            android:icon="@drawable/manageshop_list"
+            android:title="@string/manageshop_item_list" />
+
+        <item
+            android:id="@+id/manageshop_pending_orders"
+            android:icon="@drawable/manageshop_pending"
+            android:title="@string/manageshop_pending_orders" />
+
+        <item
+            android:id="@+id/manageshop_completed_orders"
+            android:icon="@drawable/manageshop_completed_orders"
+            android:title="@string/manageshop_completed_orders" />
+
+
+    </group>
+
+</menu>
