@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/General_Layout_Padding"
+    tools:context=".User_Details">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/profile_image_signup"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        app:civ_border_color="#FF000000"
+        app:civ_border_width="2dp"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/edit_profile_pic_button_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@id/profile_image_signup"
+        android:layout_alignBottom="@id/profile_image_signup"
+        app:cardBackgroundColor="@color/colorPrimary"
+        app:cardCornerRadius="10dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/General_Text_Padding"
+            android:src="@drawable/edit_icon"/>
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/name_textinputlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profile_image_signup"
+        android:layout_marginTop="50dp"
+        android:padding="@dimen/General_Text_Padding"
+        android:textColorHint="@color/TextColorDark">
+
+
+        <EditText
+            android:id="@+id/name_signup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:hint="Name"
+            android:textColor="@color/TextColorDark"
+            android:textColorHint="@color/TextColorDark"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/email_textinputlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name_textinputlayout"
+        android:layout_marginTop="50dp"
+        android:padding="@dimen/General_Text_Padding"
+        android:textColorHint="@color/TextColorDark">
+
+
+        <EditText
+            android:id="@+id/email_signup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:hint="Email"
+            android:textColor="@color/TextColorDark"
+            android:textColorHint="@color/TextColorDark"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/phone_number_signup_textinputlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/email_textinputlayout"
+        android:layout_marginTop="50dp"
+        android:padding="@dimen/General_Text_Padding"
+        android:textColorHint="@color/TextColorDark">
+
+
+        <EditText
+            android:id="@+id/phone_number_signup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:enabled="false"
+            android:hint="Phone Number"
+            android:textColor="@color/TextColorDark"
+            android:textColorHint="@color/TextColorDark"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/SignUp_Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/phone_number_signup_textinputlayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
+        android:background="@color/colorPrimary"
+        android:padding="@dimen/General_Text_Padding"
+        android:text="Sign Up"
+        android:textAllCaps="false"
+        android:textColor="@color/TextColorLight"/>
+
+</RelativeLayout>
+</ScrollView>

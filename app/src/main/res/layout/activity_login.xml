@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/General_Layout_Padding">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/phone_number_textinputlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@id/login_request_otp_button"
+        android:padding="@dimen/General_Text_Padding"
+        android:textColorHint="@color/TextColorDark">
+
+        <EditText
+            android:id="@+id/phone_number_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/phone_login_icon"
+            android:drawablePadding="@dimen/General_Drawable_Padding"
+            android:hint="Phone Number"
+            android:inputType="phone"
+            android:maxLength="10"
+            android:textColor="@color/TextColorDark"
+            android:textColorHint="@color/TextColorDark" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/login_request_otp_button"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorPrimary"
+        android:padding="@dimen/General_Text_Padding"
+        android:text="Request OTP"
+        android:textAllCaps="false"
+        android:textColor="@color/TextColorLight" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/otp_textinputlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/login_request_otp_button"
+        android:layout_marginTop="50dp"
+        android:padding="@dimen/General_Text_Padding"
+        android:textColorHint="@color/TextColorDark"
+        android:visibility="gone">
+
+
+        <EditText
+            android:id="@+id/otp_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:hint="OTP"
+            android:inputType="number"
+            android:textColor="@color/TextColorDark"
+            android:textColorHint="@color/TextColorDark"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/login_register_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/otp_textinputlayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:background="@color/colorPrimary"
+        android:padding="@dimen/General_Text_Padding"
+        android:text="Register / Sign in"
+        android:textAllCaps="false"
+        android:textColor="@color/TextColorLight"
+        android:visibility="gone"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
